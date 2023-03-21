@@ -134,4 +134,116 @@ void main() {
   // Exercise 12
   print('\n');
   print("Exercise 12");
+
+  int fib_number = 6;
+  int fib = 0;
+  List<int> fib_list = [0, 1];
+  for (int i = 2; i < fib_number + 1; i++) {
+    fib = fib_list[i - 1] + fib_list[i - 2];
+    fib_list.add(fib);
+  }
+  print('Fibonacci List ${fib_list}');
+
+  // Exercise 13
+  print('\n');
+  print("Exercise 13");
+  List<int> list_13 = [1, 1, 1, 2, 3, 4, 5, 7, 8, 8, 8, 9, 10];
+  List<int> list_13_updated = [];
+
+  for (int i = 0; i < list_13.length; i++) {
+    bool foundDuplicate = false;
+    for (int j = 0; j < list_13_updated.length; j++) {
+      if (list_13[i] == list_13_updated[j]) {
+        foundDuplicate = true;
+        break;
+      }
+    }
+    if (!foundDuplicate) {
+      list_13_updated.add(list_13[i]);
+    }
+  }
+
+  print('The list without any duplicates ${list_13_updated}');
+//   List<int> list_13 = [1, 1, 1, 2, 3, 4, 5, 7, 8, 8, 8, 9, 10];
+// Set<int> set_13 = Set<int>.from(list_13);
+// List<int> list_13_updated = set_13.toList();
+// print('The list without any duplicates ${list_13_updated}');
+
+  // Exercise 14
+  print('\n');
+  print("Exercise 14");
+  void traverse_string(String str2) {
+    List<String> words = str2.split(' ');
+    words = words.reversed.toList();
+    str2 = words.join(' ');
+    print('Reversed string: ${str2}');
+  }
+  /*
+  The reversed method returns a sequence that contains the same elements as the original list, 
+  but in reverse order. However, this sequence is not a list - it's an iterable object that can 
+  be used to iterate over the reversed elements one at a time.
+  In order to convert this reversed sequence back into a list (so we can use methods like join on it), 
+  we call the toList() method on the sequence. This creates a new list containing the same elements as 
+  the reversed sequence, but in the order that we want them (i.e., backwards). */
+
+  String str2 = 'I am Nada Amr Attia Abd El Hamed';
+  traverse_string(str2);
+
+  // Exercise 15
+  print('\n');
+  print("Exercise 15");
+  final random = Random.secure();
+  /* is a method in the Dart programming language that returns a cryptographically secure random 
+  number generator. */
+  final length = random.nextInt(5) + 12; // lenght 12 + [0-4]
+  /* generates a list of length elements, with each element being a random integer between 0 and 99.
+  Later in the code, each element in the chars list is replaced with a corresponding character 
+  depending on its value. */
+  final chars = List.generate(length, (_) => random.nextInt(100));
+  final symbols = <String>[
+    r'!',
+    r'@',
+    r'#',
+    r'$',
+    r'%',
+    r'^',
+    r'&',
+    r'*',
+    r'(',
+    r')',
+    r'-',
+    r'_',
+    r'+',
+    r'=',
+    r'{',
+    r'}',
+    r'[',
+    r']',
+    r';',
+    r':',
+    r'"',
+    r"'",
+    r'<',
+    r'>',
+    r',',
+    r'.',
+    r'/',
+    r'?',
+  ];
+
+  for (int i = 0; i < length; i++) {
+    final n = chars[i];
+    if (n < 33) {
+      chars[i] = random.nextInt(26) + 65; // uppercase letter
+    } else if (n < 66) {
+      chars[i] = random.nextInt(26) + 97; // lowercase letter
+    } else if (n < 91) {
+      chars[i] =
+          symbols[random.nextInt(symbols.length)].codeUnitAt(0); // symbol
+    } else {
+      chars[i] = random.nextInt(10) + 48; // number
+    }
+  }
+
+  print('Password: ${String.fromCharCodes(chars)}');
 }
